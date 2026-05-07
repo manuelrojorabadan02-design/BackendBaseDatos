@@ -1,7 +1,7 @@
 package com.example.BackendBaseDatos.controlador;
 
 import com.example.BackendBaseDatos.dominio.Director;
-import com.example.BackendBaseDatos.sevicio.DirectorService;
+import com.example.BackendBaseDatos.servicio.DirectorService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

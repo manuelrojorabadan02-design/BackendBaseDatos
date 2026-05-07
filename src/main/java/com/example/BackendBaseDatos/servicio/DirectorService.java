@@ -1,4 +1,4 @@
-package com.example.BackendBaseDatos.sevicio;
+package com.example.BackendBaseDatos.servicio;
 
 import com.example.BackendBaseDatos.dominio.Director;
 import com.example.BackendBaseDatos.repositorio.DirectorRepository;

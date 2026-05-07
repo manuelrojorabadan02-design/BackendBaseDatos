@@ -1,9 +1,6 @@
 package com.example.BackendBaseDatos.dominio;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
+@Table(name = "actores")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Soy un elemento auto increment

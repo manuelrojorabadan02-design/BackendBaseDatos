@@ -1,7 +1,8 @@
 package com.example.BackendBaseDatos.controlador;
 
 import com.example.BackendBaseDatos.dominio.Pelicula;
-import com.example.BackendBaseDatos.sevicio.PeliculaServicio;
+import com.example.BackendBaseDatos.servicio.PeliculaServicio;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class PeliculasControler {
     }
 
     @PostMapping
-    public Pelicula addPelicula(@RequestBody Pelicula p){
+    public Pelicula addPelicula(@Valid @RequestBody Pelicula p){
         return peliculaServicio.addPelicula(p);
     }
 
