@@ -11,13 +11,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-
-
 import java.util.List;
 
-@Component // ⬅️ SIN ESTO, SPRING IGNORA ESTA CLASE COMPLETAMENTE
+@Component
 @Profile("!test")
-
 @AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
@@ -27,52 +24,62 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         System.out.println("🚀 Intentando cargar datos de prueba...");
 
-        // Usamos saveAll para insertar en bloque, es más eficiente y seguro
         if (peliculaRepo.count() == 0) {
-            peliculaRepo.saveAll(List.of(
-                    new Pelicula(null, "Matrix", "Ciencia Ficción", 1999, "Oscura"),
-                    new Pelicula(null, "Inception", "Ciencia Ficción", 2010, "Surrealista"),
-                    new Pelicula(null, "El Padrino", "Crimen", 1972, "Clásica"),
-                    new Pelicula(null, "Interstellar", "Ciencia Ficción", 2014, "Espacial"),
-                    new Pelicula(null, "Pulp Fiction", "Crimen", 1994, "No lineal"),
-                    new Pelicula(null, "El Caballero Oscuro", "Acción", 2008, "Oscura"),
-                    new Pelicula(null, "Forrest Gump", "Drama", 1994, "Emotiva"),
-                    new Pelicula(null, "Gladiator", "Acción", 2000, "Épica"),
-                    new Pelicula(null, "Parasite", "Thriller", 2019, "Crítica social"),
-                    new Pelicula(null, "Blade Runner 2049", "Ciencia Ficción", 2017, "Cyberpunk")
-            ));
-        }
 
-        if (actorRepo.count() == 0) {
-            actorRepo.saveAll(List.of(
-                    new Actor(null, "Keanu Reeves", "Libanés/Canadiense"),
-                    new Actor(null, "Leonardo DiCaprio", "Estadounidense"),
-                    new Actor(null, "Meryl Streep", "Estadounidense"),
-                    new Actor(null, "Tom Hanks", "Estadounidense"),
-                    new Actor(null, "Penélope Cruz", "Española"),
-                    new Actor(null, "Robert De Niro", "Estadounidense"),
-                    new Actor(null, "Scarlett Johansson", "Estadounidense"),
-                    new Actor(null, "Denzel Washington", "Estadounidense"),
-                    new Actor(null, "Margot Robbie", "Australiana"),
-                    new Actor(null, "Ricardo Darín", "Argentino")
-            ));
-        }
+            Director director1 = new Director();
+            director1.setNombre("Lana Wachowski");
+            director1.setEdad(58);
 
-        if (directorRepo.count() == 0) {
-            directorRepo.saveAll(List.of(
-                    new Director(null, "Lana Wachowski", 58),
-                    new Director(null, "Christopher Nolan", 53),
-                    new Director(null, "Steven Spielberg", 77),
-                    new Director(null, "Quentin Tarantino", 61),
-                    new Director(null, "Martin Scorsese", 81),
-                    new Director(null, "Greta Gerwig", 40),
-                    new Director(null, "Pedro Almodóvar", 74),
-                    new Director(null, "Guillermo del Toro", 59),
-                    new Director(null, "Denis Villeneuve", 56),
-                    new Director(null, "Bong Joon-ho", 54)
-            ));
+            Director director2 = new Director();
+            director2.setNombre("Christopher Nolan");
+            director2.setEdad(53);
+
+            Director director3 = new Director();
+            director3.setNombre("Jonathan Nolan");
+            director3.setEdad(48);
+
+            directorRepo.saveAll(List.of(director1, director2, director3));
+
+            Pelicula pelicula1 = new Pelicula();
+            pelicula1.setTitulo("Matrix");
+            pelicula1.setGenero("Ciencia Ficción");
+            pelicula1.setAnio(1999);
+            pelicula1.setCategoriaVisual("Oscura");
+            pelicula1.setDirectores(List.of(director1));
+
+            Pelicula pelicula2 = new Pelicula();
+            pelicula2.setTitulo("Interstellar");
+            pelicula2.setGenero("Ciencia Ficción");
+            pelicula2.setAnio(2014);
+            pelicula2.setCategoriaVisual("Espacial");
+            pelicula2.setDirectores(List.of(director2, director3));
+
+            peliculaRepo.saveAll(List.of(pelicula1, pelicula2));
+
+            Actor actor1 = new Actor();
+            actor1.setNombre("Keanu Reeves");
+            actor1.setNacionalidad("Libanés/Canadiense");
+            actor1.setPelicula(pelicula1);
+
+            Actor actor2 = new Actor();
+            actor2.setNombre("Carrie-Anne Moss");
+            actor2.setNacionalidad("Canadiense");
+            actor2.setPelicula(pelicula1);
+
+            Actor actor3 = new Actor();
+            actor3.setNombre("Matthew McConaughey");
+            actor3.setNacionalidad("Estadounidense");
+            actor3.setPelicula(pelicula2);
+
+            Actor actor4 = new Actor();
+            actor4.setNombre("Anne Hathaway");
+            actor4.setNacionalidad("Estadounidense");
+            actor4.setPelicula(pelicula2);
+
+            actorRepo.saveAll(List.of(actor1, actor2, actor3, actor4));
         }
 
         System.out.println("✅ DATOS CARGADOS CON ÉXITO");

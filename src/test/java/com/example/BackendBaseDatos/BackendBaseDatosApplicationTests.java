@@ -20,23 +20,23 @@ class BackendBaseDatosApplicationTests {
 	void guardarPeliculaTest() {
 
 		// Crear película
-		Pelicula peli = new Pelicula(
-				null,
-				"Interestellar",
-				"Ciencia Ficcion",
-				2025,
-				null
-		);
+		Pelicula peli = new Pelicula();
+
+		peli.setTitulo("Interestellar");
+		peli.setGenero("Ciencia Ficcion");
+		peli.setAnio(2025);
+		peli.setCategoriaVisual(null);
 
 		// Guardar en la base de datos
 		Pelicula peliGuardada = repository.save(peli);
 
 		// Verificaciones
-		assertNotNull(peliGuardada);
+
 		assertNotNull(peliGuardada.getId());
 
 		assertEquals("Interestellar", peliGuardada.getTitulo());
 		assertEquals("Ciencia Ficcion", peliGuardada.getGenero());
 		assertEquals(2025, peliGuardada.getAnio());
+
 	}
 }
