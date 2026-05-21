@@ -18,6 +18,7 @@ public class Actor {
     private Long id;
 
     private String nombre;
+
     private String nacionalidad;
 
     @ManyToOne

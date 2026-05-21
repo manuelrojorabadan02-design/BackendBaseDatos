@@ -1,6 +1,5 @@
 package com.example.BackendBaseDatos.dominio;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -25,7 +24,7 @@ public class Pelicula {
     private Long id;
 
     @NotBlank
-    @Size(min=3, max=100)
+    @Size(min = 3, max = 100)
     private String titulo;
 
     private String genero;
@@ -34,11 +33,9 @@ public class Pelicula {
     @Min(1895)
     private int anio;
 
-    @Transient
     private String categoriaVisual;
 
     @OneToMany(mappedBy = "pelicula", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<Actor> actores = new ArrayList<>();
 
     @ManyToMany

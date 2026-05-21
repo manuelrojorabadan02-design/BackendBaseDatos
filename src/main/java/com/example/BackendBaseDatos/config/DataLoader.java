@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@Profile("!test")
+//@Profile("!test")
 @AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
